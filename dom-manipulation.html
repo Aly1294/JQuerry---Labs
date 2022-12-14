@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM-Manipulation Exercise</title>
+	<style>
+		section{
+			border:1px solid #CACACA;
+			border-radius: 1px;
+			min-height:200px;
+			margin:20px;
+			padding:10px;
+			
+		}
+		h1{
+			text-align: center;
+		}
+		a{
+			display: block;
+			margin:10px;
+			line-height: 50px;
+		}
+		section:not(:nth-child(6)){
+			text-align:center;
+		}
+		.container1 div{
+			border:1px solid #CACACA;
+			width:150px;
+			display: inline-block;
+			text-align:center;
+			height: 10em;
+			line-height: 10em;
+		}
+		.container1 p{
+			margin:0;
+		}
+		figure{
+			border:1px solid #CACACA;
+			width:150px;
+			padding:10px;
+			display: inline-block;
+		}
+		input:not([type=checkbox]){
+			display:block;
+			margin:5px auto;
+		}
+		table td,table th{
+			padding:10px;
+			border:1px solid #CACACA;
+		}
+		.man{
+			background:cyan;
+		}
+		.woman{
+			background:pink;			
+		}
+
+		.black{
+			border: 1px solid black;
+		}
+
+	</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+   $(document).ready(function () {
+
+	   // ............ Question 1 ............
+		// first point 
+	    $(".container1").append("<div class='black'>Div whith class='black'</div>")
+		// second point 
+		$(".red").before("<div class='white'></div>")
+		$(".white").css({"border":"1.5px solid lightgray","height":"50px","width":"96%","margin":"0px auto","padding-top":"30px"})
+		// third point 
+		$(".pink").before("<p class='yellow'>p whith class='yellow'</p>")
+		$(".pink").css({"border":"1px solid lightgray"})
+
+
+	   // ............ Question 2 ............
+	   
+	   let link;
+	   $(".p").each(function(index){
+		
+		link=$(this).text()
+		console.log(link)
+		$(this).replaceWith("<a href="+link+">"+link+"</a>")
+
+});
+
+	   // ............ Question 3 ............
+	   // first point     
+	   $("#img").wrap("<figure ></figure>")
+	   // second point     
+	   $(".container3").append("<figcaption>Coffee</figcaption>")
+
+	   // ............ Question 4 .........
+
+	   // first point   second & third point
+	   let cls;
+	   let user;
+	   let email;
+	   $("td").each(function(index){
+			cls=$(this).attr("class")
+			user=$(this).text()
+			// console.log(cls)
+			console.log(user)
+			if (cls=="col-age"){
+				$(this).text("")
+			}
+			if (user=="Mohsen"){
+				$(this).attr("class","man")
+			}
+			if(cls.startsWith("your-email") || cls.endsWith("your-email")){
+				$(this).removeClass("your-email")
+			}
+			else{
+				$(this).addClass("your-email")
+
+			}
+			
+		});
+
+	
+	   // ............ Question 5 (Bonus) .........
+
+	   $("li").each(function(index){
+		console.log(index);
+			if((index+1)%3!=0){
+				$(this).replaceWith("")
+
+			}
+		});
+
+
+	   // ............ Question 6 .........
+	   $("[type=text").val("Aly Khaled Aly Ghareeb");
+	   $("[type=checkbox]").attr("checked",true);
+
+})
+// $(document).ready(function(){
+// 	$(".container1").wrapInner(function(){
+// 	$(".black").append("<div>append text</div>") });
+// 	});
+
+</script>
+
+
+</head>
+<body>
+	<header>
+		<h1>Welcome to JQuery Course</h1>
+	</header>
+
+
+	<!-- Container 1  -->
+	<section class="container1">
+		<div class="red">
+			<p class="cyan">Hello Ahmed</p>	
+		</div>
+		<div class="blue">
+			<p class="pink">Hello Ibrahim</p>
+		</div>
+		<div class="green">
+			<p class="orange">Hello Salma</p>
+		</div>
+	</section>
+
+
+	<!-- Container 2  -->
+	<section class="container2">
+		<p class="p">www.google.com</p>
+		<p class="p">www.ieee.org</p>
+		<p class="p">www.facebook.com</p>
+	</section>
+
+
+	<!-- Container 3  -->
+	<section class="container3">
+			<img id="img" src="img/coffee.png" alt="" width="100" height="100">
+	</section>
+
+
+	<!-- Container 4  -->
+
+	<section class="container4">
+		<table>
+			<tr class="h-row">
+				<th>Name</th>
+				<th>Email</th>
+				<th>Age</th>
+			</tr>
+			<tr class="row1">
+				<td class="col-name ">Mohsen</td>
+				<td class="col-email ">mohsen@gmail.com</td>
+				<td class="col-age">19</td>
+			</tr>
+			<tr class="row3">
+				<td class="col-name">Amany</td>
+				<td class="col-email your-email">amany@gmail.com</td>
+				<td class="col-age">21</td>
+			</tr>
+		</table>
+
+	</section>
+
+	<!-- Container 5 -->
+	<section class="container5">
+		<ul>
+			<li class="task1">Bring Milk</li> 
+			<li class="task2">Buy Bike</li>
+			<li class="task3">Learn JQuery</li>
+			<li class="task4">Practice JQuery</li>
+			<li class="task5">Enjoy JQuery</li>
+			<li class="task6">Don't forget JavaScript</li>
+			<li class="task7">break</li>
+			<li class="task8">another break</li>
+			<li class="task9">break from break</li>
+			<li class="task10">
+				other tasks
+				<ol>
+					<li>mini-task1</li>
+					<li>mini-task2</li>
+					<li>mini-task3</li>	
+				</ol>
+				
+			</li>
+		</ul>
+	</section>
+
+	<!-- Container 6 -->
+	<section class="container5 container6 ">
+		<form action="" id="my-form">
+			<input type="text" name="username" id="username">
+			<input type="password" name="password" id="password">
+			<input type="checkbox" name="remember" id="remember"> Remember Me
+			<input type="submit" value="Submit">
+		</form>
+	</section>
+
+
+
+
+	<footer>
+		<p>iti copy right reserved</p>
+	</footer>
+
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</body>
+</html>
